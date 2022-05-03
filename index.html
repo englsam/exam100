@@ -1,26 +1,1736 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="" width=device-width, initial-scale="1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- ============  JQUERY    ================ -->
+	
+	<script type="text/javascript" src="/pages/js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="/pages/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="/pages/js/jquery.blockUI.js"></script>	
+	<link rel="stylesheet" href="/pages/css/jquery-ui.css">
+
+	<!-- ============ BOOTSTRAP ================ -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	
+
+
+	<!-- ============ SWEET ALERT ================ -->	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css"/>
+<!--
+	<script type="text/javascript" src="/pages/js/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="/pages/css/sweetalert2.min.css">
+-->
+
+	<!-- ============ w4/font-awesome ================ -->	
+	<link rel="stylesheet" href="/pages/css/w3.css">
+	<script type="text/javascript" src="/pages/js/a076d05399.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" href="/pages/css/font-awesome.min.css"> -->
+
+	<?php	
+	   if( $kind =='nation' ){
+			$css_naesin_font_size = "13px !important";	  
+		}else if( $kind =='school' ){ 
+			$css_naesin_font_size = "13px !important";	  
+		}
+	?>
+	<!--
+	<link rel="stylesheet" type="text/css" href="page.css?after"/>
+	<link rel="stylesheet" type="text/css" href="page2.css?after"/>	
+	-->
+
+<style>
+		body {
+    
+/*     @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800'); 
+/*     font-family: 'Nanum Gothic';   
+		
+	 font-family : "Apple SD Gothic Neo","Nanum Gothic",Arial, "Malgun Gothic", serif;	*/
+	 font-family : "Apple SD Gothic Neo","Malgun Gothic",Arial, serif;	
+     margin: 0;
+     padding: 0;
+     background-color: #FAFAFA;
+     font: 10pt;
+ }
+
+ * {
+     box-sizing: border-box;
+     -moz-box-sizing: border-box;
+ }
+ 
+ .book {
+     width: 21cm;
+     margin: 0 auto;
+ }
+
+ .page, .pageans {
+     width: 21cm;
+     min-height: 29.7cm;
+     padding: 1cm 1cm 1cm 1cm;
+     /* 상우하좌 */
+     margin: 1cm auto;    
+     background: white;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+ }
+
+
+ .subpage, .subpageans {     
+     padding: 1mm;    
+     height: 260mm;
+	 width: 100%;     
+ } 
+
+ .newspaper, .newspaperans {
+		  column-count: 2;			
+	/*	  column-width: 340px;		*/
+		  column-gap: 1.5em;
+		  column-rule: 1px dotted black;		
+		  column-fill: auto;
+		  height: 265mm;
+		  width: 100%;
+		  overflow:hidden;
+	}	
+
+
+		.top_div {
+			 text-align: center;
+			 font-size: 14px;
+			 padding-left: 10px;
+			 padding-bottom: 5px;
+			 margin-bottom: 5px;
+			 width: 188mm;
+			 height: 7mm;			
+			 border-bottom: 2px solid black;
+		 } 
+		 .paper_name{		/* 시험지이름 */
+		 	 width: 49%;
+		 	 font-size: 12px;			 
+			 color: black;
+			 text-align: right;
+			 display: inline-block;
+		 }
+		 
+		 .bottom_div {
+			 text-align: center;			
+			 padding-left: 10px;
+			 margin-top: 5px;
+			 width: 188mm;
+			 height: 5mm;
+			 border-top: 1px solid black;			 
+		 }
+		 .page_number{		/* 시험지 번호 */
+		 	 width: 49%;
+		 	 font-size: 14px;
+			 font-style: italic;
+			 font-weight:bold;
+			 color: black;
+			 text-align: right;
+			 display: inline-block;
+		 }
+		 .academy_name{		/* 학원 이름 */
+		 	 width: 49%;
+		 	 font-size: 12px;
+			 font-weight: bold;
+			 color: black;
+			 text-align: left;
+			 display: inline-block;
+		 }
+
+
+
+
+ /* ======= 다음을 보고 선택하세요.  =============  */
+ .notice {
+     font-size: 13px;
+     /*	  border:1px solid green;	*/
+     margin: 2px;
+     padding-left: 10px;
+	 
+
+ }
+
+
+ @page {
+     size: A4;
+     margin: 0;
+ }
+
+ @media print {
+ 	html, body {
+		width: 210mm;
+		height: 297mm;		
+		}
+     .noPrint {
+         display: none;
+     }
+
+     .page,.pageans {
+         margin			: 0;
+         border			: initial;
+         border-radius	: initial;
+         width			: initial;
+         min-height		: initial;
+         box-shadow		: initial;
+         background		: initial;
+         page-break-after: always;
+
+     }
+ }
+
+
+/*  ==========================================   */
+		.uline{	 color: black;
+				 text-decoration:underline;
+				 text-underline-position: under;
+				 text-decoration-color: #8c8c8c;
+				 font-weight:500;
+			}
+			
+		.b_bold{ font-weight:bold; }
+
+		.b_u{	color: black;
+				text-decoration:underline;
+				text-underline-position: under;
+				text-decoration-color: #6c6c6c;
+				font-weight:bold;
+				}
+		.t_outdent{ margin-left:20px; }
+
+
+		.tcolor, .tcolor2,.tcolor22{	color: black;
+							text-decoration:underline;
+							text-underline-position: under;
+							text-decoration-color: #6c6c6c;
+							font-weight:500;
+				/*			font-style:italic;    */
+			 }	
+		.al_right{ text-align:right;  }		// 오른쪽으로 정렬
+		.al_center{ text-align:center;  }	// 왼쪽으로 정렬
+
+		
+
+		.pb{				
+			margin: 10px 10px 50px 10px;  /* 상우하좌 */
+			padding:5px;
+			background-color:white;				
+		}
+
+
+
+		/* ======= 질문지 테이블  =============  */
+		.foo_table tr{ line-height:150%; } 
+		.foo_table{ margin-left:5%; width:94%;  border-collapse: collapse; margin-top:10px; font-size:12px;}
+		.td1{width:30px; margin-left:5px; text-align:center;vertical-align:top; padding-right:1px; }
+		.td2{text-align:left;vertical-align:middle;line-height:160%;padding-left:2px; font-size:12px; }
+		.pb1_td2{text-align:left;vertical-align:middle;line-height:160%;padding-left:2px; min-width:100px; font-size:11px; }
+
+		.row1_td2{ min-width:24px;max-width:25px;padding-left:1px; }	/* 한줄에 5문제  */
+
+
+
+		
+		/* ======= 추가한 테이블  =============  */
+		.add_table{ margin-left:2.5%; width:95%;  border-collapse: collapse; margin-top:10px;}	
+		.add_table td{ border: 1px solid #A6A6A6; font-size:12px; padding:8px;}; 
+
+		.td1_table{width:50px; font-size:13px; text-align:center;vertical-align:top; padding-left:10px; }		
+		.pb1_td2_table{text-align:left;vertical-align:middle;line-height:140%;padding-left:10px; }
+		
+		.pb_info{font-size:6px;color:#8c8c8c !important;padding-left:2px;}		/* 고1-능률(양) 5과-1    */
+
+
+		
+		/* ======= 삽입에 필요한 테이블  =============  */
+		table#incontent_table{border:#8c8c8c 1px solid; width:100%; margin-bottom:10px; margin-top:5px; }
+		table#incontent_table td{ padding:3px; }			
+		
+
+		
+		/* =======  요약 style ========  */			
+		.yoyak1_table{ width:96%; margin-left:2%;margin-top:5px;   }
+		.yoyak_arrow{ padding:7px; text-align:center;font-size:20px; }
+		.yoyak_title{ font-size:12px; padding:4px;border:1px #8c8c8c solid; }
+		.td_center{text-align: center; }
+		
+
+
+		/* =======  순서 style ========  */		
+		#sunseo_ans_table{ margin-top:1px; margin-bottom: 5px; }
+		#sunseo_ans_table td{ height:25px; vertical-align:middle;text-align:left;padding-left:5px;}
+		.sunseo_td01{ padding:5px;border:1px #8c8c8c solid; margin-bottom:15px; }
+		.sunseo_td0{padding-bottom:7px;padding-top:7px;width:30px;text-align:center;vertical-align:top;font-size:12px;}
+		.sunseo_td1{padding-bottom:7px;padding-top:7px;}
+
+
+		/* =======  재배열 style ========  */	
+		.rearrange_title{ padding:4px;border:1px solid #8c8c8c; }
+		.rearrange_td{ height:1px;font-size:3px;  }
+		.rearrange_answer{ padding: 4px; }	
+		.saq_title{ padding:4px;border:1px solid #8c8c8c; }
+		.saq_td{ height:1px;font-size:3px;  }
+		.saq_answer{ padding:4px;  }
+
+
+		
+		
+		/* ======= 내용들어가는곳  =============  */
+		
+		.contents,.incontent_td ,.sunseo_td01,.sunseo_td1,.yoyak_title{
+			font-size: 12px;
+			margin:10px;
+		    padding:5px;
+			background-color:#ffffff !important;	
+/*			background-color:#e8e8e8 !important;	*/	
+			line-height:150%;
+			text-align:justify;	
+			
+			}
+/*		  font-family : "Apple SD Gothic Neo",Batang, Arial, "Malgun Gothic", serif;			
+		  font-size:12.5px !important;	
+	  */
+	  	.contents{
+	  	  font-family : "Apple SD Gothic Neo",Batang, Arial, "Malgun Gothic", serif;	
+		  font-size:13px !important;
+/*		  font-family : "Apple SD Gothic Neo",'Nanum Myeongjo', serif;	*/
+		  border:2px solid #acacac;			
+		  border-bottom:3px solid #acacac;		
+/*		  border:1px solid #9c9c9c !important;		*/
+		  margin:10px;
+		  padding:5px;
+		  background-color:#ffffff !important;	
+/*		  background-color:#e8e8e8 !important;	*/	
+		  line-height:150%;
+		  text-align:justify;		 
+		}
+		
+		.pb, .pb tr td{	
+
+		  font-family : "Apple SD Gothic Neo",Batang, Arial, "Malgun Gothic", serif;	
+		  font-size:13px !important;	
+		  background-color:#ffffff !important;	 				
+		   }
+/*		.pb tr td{ font-size: <?php echo $css_naesin_font_size; ?>; }    */
+
+/*		.pb tr td{ font-size: 13px; }   */
+
+		/* ======= 문제지... 와 번호  =============  */
+		.title{
+		  font-size:13px;	  
+		  margin:2px;
+		  padding-left:10px;
+		  font-weight:500;
+		}
+		span.num_span{
+			font-size:18px;
+			font-weight:900;		
+			padding-right:7px;
+			color:blue;
+		}
+
+
+
+
+		
+		.red{ border:3px solid red; background-color:white !important;	}
+		.white{ border:1px solid white !important;	}
+		.tcon{ min-width:100px; }			/* 타이틀의 내용이 들어가는곳.   */
+		.ans_cnt{contenteditable:false;}	/* 타이틀옆에 정답(2개) 등..   */
+
+
+		/* ===========  정답지에 번호와 정답을 표시하는 부분  =====================  */
+		.ans1{font-size:14px; font-weight:bold;	padding-left:10px; vertical-align:top;width: 40px;}
+
+		.ans2{font-size:12x;padding-left:10px; text-align: left; font-weight: 400; }												/*  정답부분  */
+		.ans22{	font-size:11px;padding-left:90px; padding-right: 5px; 
+				text-align: left;font-style: normal;
+				text-decoration:underline;text-underline-position: under;}  /* 해설부분 */
+		
+		.sol1{font-size:14px; font-weight:bold;	padding-left:10px; vertical-align:top;}
+		.sol2{font-size:12px;padding-left:10px;	}
+
+		.ans{ margin-top:5px; }		
+
+		/* ===========  시험지에 정답과 해설을 표시하는 부분  =====================  */
+		.ans_sol{	min-height:47px;
+					max-height:48px;
+					border:1px solid white;
+					
+					font-size:0;
+				}
+		.ans_div{ color: white; }
+		.sol_div{ color: white; }
+		.gichul{background-color:#8c8c8c;font-size:9px;}
+
+		
+		/* ===========  문법수정 테이블  =====================  */
+		.mun_table{margin-left:2.5%; width:95%;  border-collapse: collapse; margin-top:10px;}		
+		.mun_table td{ border: 1px solid #A6A6A6; font-size:12px; padding:3px;height:25px;};	
+
+
+/* ====================================================  */
+
+	
+		
+
+</style>
+
+<title>Exam100</title>	
 </head>
 
+
+
+
 <body>
-    <h1>첫번째 프로젝트다</h1>
-    <p>예ㅖㅖㅖㅖㅖ</p>
-    <h2>
-        모모모모모모모
-    </h2>
-    <h2>
-        모모모모모모모
-    </h2>
-    <h2>
-        666666
-    </h2>
+
+<?php require($_SERVER['DOCUMENT_ROOT']."/pages/menu/db_con2.php");  ?>
+
+	<?php
+		session_start();		
+
+		$query3="SELECT * from oz_member_list where mid='$_SESSION[mid]' ";
+		$result3=mysql_query($query3);
+									
+		while($row3=mysql_fetch_array($result3)){	   	
+				$academy1 = str_replace("'","",$row3[opt1]); 
+				$academy = str_replace('"',"",$academy1); 
+			}	
+	?>
+
+
+
+<!-- ============  control panel ================== -->
+	<?php include('pb_select_0_control1.php');   ?>    <!-- floating panel  -->
+<!-- =================================================  -->
+
+
+
+
+
+	<?php if($user_level >= 9){ ?>
+				<!-- b_handling.js  -->
+				<div class="w3-bar noPrint" id="b_group" style="display:none;position:absolute;">
+				  <div style="width:10px;"> <span class="glyphicon glyphicon-menu-hamburger"></span></div>
+				  <button class="w3-bar-item w3-button w3-tiny w3-green"	id="b_exit">exit</button>				  
+				  <button class="w3-bar-item w3-button w3-tiny w3-red"		id="b_delete">삭제</button>
+				  <button class="w3-bar-item w3-button w3-tiny w3-green"		id="b_modify">편집</button>   
+				  <button class="w3-bar-item w3-button w3-tiny w3-teal"		id="b_edit">바로수정</button>
+				</div>
+	<?php } ?>
+	<script>
+		$(document).on('click', '#b_modify', function() {		// 편집 버튼을 누루면...
+				
+				var this_id=$('#state_del_btn').val();
+				var id_s=this_id.split('_');
+				
+				var pb_num=id_s[0];		// 수정할 문제번호
+				var db_name='<?=$db_name?>';				
+				var kind='<?=$kind?>';
+				
+				var user_mid='<?= $user_mid; ?>';		// 이전페이지에서 전달받는다.				
+				var publisher='<?=$publisher?>';	// 이전페이지에서 전달받는다.
+				var lesson='<?=$lesson?>';			// 이전페이지에서 전달받는다.
+				var grade='<?=$grade?>';			// 이전페이지에서 전달받는다.			
+				var grade2='<?=$grade2?> ';
+				var code='<?=$code?>';			// 이전페이지에서 전달받는다.
+				var mode='modify_manager';
+				var writer='<?= $writer; ?>';		// 이전페이지에서 전달받는다.				
+				var jemok='<?= $jemok; ?>';		// 이전페이지에서 전달받는다.
+
+						
+
+			var urla=root_url+'/pages/menu/nation_test/new_problem_test.php?';
+			
+			var url=urla+   '&db_name='+db_name+
+							'&mode='+mode+	
+							'&pb_num='+pb_num+
+							'&user_mid='+user_mid+	
+							'&kind='+kind+
+							'&code='+code+
+							'&writer='+writer+
+							'&lesson='+lesson+
+							'&grade='+grade+
+							'&grade2='+grade2+
+							'&publisher='+publisher
+							;					
+				
+	  
+			var s_width= '950px';
+			var new_problem= window.open('', 'new_problem','height=' + screen.height + ',width=' + s_width + 'fullscreen=no, scrollbars=yes, top=0px, left=0px');
+			
+			if(new_problem.location == 'about:blank' ){  
+				
+				new_problem.location = encodeURI(url) ;
+				
+			}
+				new_problem.focus();
+				
+			});
+
+
+		 $(document).on('click', '#b_exit', function() {		// 셀렉트에서 변화가 감지되면...
+				var this_id=$('#state_del_btn').val();
+				$( "*" ).removeClass('red');
+				$('#b_group').hide();
+				$( "*" ).css('opacity','1');
+				
+			 });
+
+		 $(document).on('click', '#b_delete', function() {		// 셀렉트에서 변화가 감지되면...
+				var this_id=$('#state_del_btn').val();
+				var id_s=this_id.split('_');
+				
+				var db_name='<?=$db_name?>';
+				var num=id_s[0];	// title, contents, pb
+				var kind='<?=$kind?>';		
+			
+				
+
+			var result = confirm( num+' 문제가 삭제됩니다\n\n.. 그래도 삭제할까요??'); 
+			if(result) { 
+			
+					//	var url_name='http://smartexam.ozwiz.co.kr/pages/menu/nation_test/server.php';
+						var url_name=root_url+'/pages/menu/nation_test/server.php';
+							$.ajax({
+								type	: "POST",
+								dataType: 'json',
+								global	: false,
+								url		:url_name,
+																	
+								data: {		
+										mode		: "data_delete",
+										db_name		: db_name,
+										kind		: kind,							
+										num			: num						
+											},	    
+												   
+								success:function(result){
+									
+									$( "*" ).removeClass('red');
+									$('#b_group').hide();
+									
+									$('.group_62').remove();
+									$('.group_63').remove();
+									$('.group_64').remove();
+
+									alert(result.s_result+' 번 문제가 삭제되었습니다');
+									
+								}, 
+						
+								 beforeSend: function(){	
+								
+									 $.blockUI({ css: { backgroundColor: '#fff', color: '#1DDB16'} });
+									 $.blockUI({ message: '<h3><img src="images/viewLoading11.gif" /> Just a moment...</h3>',
+									 css: { top: '40%', left: '', right: '30%' } 	
+									 });														
+								},
+						
+								complete: function(){
+													
+									//reposition();
+									setTimeout($.unblockUI, 300); 
+								}, 
+											
+								error: function() {
+									Swal.fire( 'Ajax?', '문제가 발생하였습니다!!', 'error' );		
+								//	alert("문제가 발생하였습니다");		
+								}
+							
+							});	// $.ajax({	
+				} // if(result) { 
+
+				
+			 });
+			
+		
+		$(document).on('click', '#new_save2', function() { 
+
+			alert('ddd');
+     
+			});
+
+		$(document).on('click', '.title, .pb, .contents', function() { 
+	
+		if( ('<?= $user_level; ?>').trim() >= 9 ){
+
+			var this_id=$(this).attr('id');
+			var id_s=this_id.split('_');
+		//	alert(this_id);
+			$( "*" ).removeClass('red');
+
+			if(id_s[1]=='title'){				
+				$('#'+id_s[0]+'_tcon').addClass('red');
+
+			}else{
+				$('#'+this_id).addClass('red');
+				}
+			$('#state_del_btn').val(this_id);			
+			
+			var t_top = Math.floor($('#'+this_id).position().top)-60;
+			var t_left = Math.floor($('#'+this_id).position().left)-170;
+
+
+			
+			$('#b_group').css('display','block');
+			$('#b_group').offset({top: t_top, left: t_left});
+			$('#b_group').css('z-index','10');
+		
+		}else{
+			return false;
+			}
+		
+		});
+
+
+		$(document).on('click', '#b_edit', function() { 
+
+		//	alert( $('#state_del_btn').val() );
+			var this_id=$('#state_del_btn').val();
+			var id_s=this_id.split('_');
+			if(id_s[1]=='title'){
+				var tcon_html=$('#'+this_id).find('.tcon').html();
+				var ans_cnt_html=$('#'+this_id).find('.ans_cnt').html();
+				var this_html='<span class="tcon">'+tcon_html+'</span><span class="ans_cnt">'+ans_cnt_html+'</span>';
+			//	alert(this_html);
+
+			}else if(id_s[1]=='pb'){
+				$('#'+this_id+' table tr td').removeAttr("style");
+				var this_html=$('#'+this_id).html();
+				
+			}else{
+				var this_html=$('#'+this_id).html();
+			//	alert(this_html);
+			}
+
+			var db_name='<?=$db_name?>';		
+			var var1=id_s[1];	// title, contents, pb
+			var kind='<?=$kind?>';	
+			
+			
+					
+			var url_name=root_url+'/pages/menu/nation_test/server.php';
+				$.ajax({
+					type	: "POST",
+					dataType: 'json',
+					global	: false,
+					url		:url_name,
+														
+					data: {		
+							mode		: "edit_update",
+							db_name		: db_name,
+							kind		: kind,
+							var1		: var1,
+							num			: id_s[0],
+							data1		: this_html
+								},	    
+									   
+					success:function(result){
+						
+						$( "*" ).removeClass('red');
+						$('#b_group').hide();
+						alert(result.s_result);
+						
+					}, 
+			
+					 beforeSend: function(){	
+					
+						 $.blockUI({ css: { backgroundColor: '#fff', color: '#1DDB16'} });
+					     $.blockUI({ message: '<h3><img src="/pages/menu/nation_test/images/viewLoading11.gif" /> Just a moment...</h3>',
+						 css: { top: '40%', left: '', right: '30%' } 	
+					     });														
+					},
+			
+					complete: function(){
+										
+						setTimeout($.unblockUI, 300); 
+					}, 
+								
+					error: function() {
+						Swal.fire( 'Ajax?', '문제가 발생하였습니다!!', 'error' );		
+					//	alert("문제가 발생하였습니다");		
+					}
+				
+				});	// $.ajax({	
+		
+		});
+
+
+
+	</script>
+	
+	<!--
+	<?php require($_SERVER['DOCUMENT_ROOT']."/pages/menu/db_con1.php");  ?>					
+	-->
+	
+
+	<!-- ============  control panel ================== -->
+	<?php include('pb_select_0_modal1.php');   ?>    <!-- floating panel  -->
+	<!-- =================================================  -->
+
+	
+
+<!-- ============  main div ================== -->
+	
+<div class="book" id="book1">
+
+
+	<?php for($i=0; $i<2; $i++){	$j=$i+1;	?>
+    <div class="page pbs" id='<?="page_".($i+1)?>'>			
+        <div class="subpage" id='<?="subpage_".($i+1)?>'>
+			<div class="top_div">
+					<div class="academy_name"></div>
+					<div class="paper_name"></div>									
+			</div>		
+			<div class="newspaper" id='<?="newcon_".($i+1)?>'></div>	
+			
+			<div class="bottom_div">
+					<div class="academy_name"></div>
+					<div class="page_number"><?=$i+1?></div>
+			</div>		
+			  
+        </div>		
+    </div>	
+	<?php } ?>
+
+
+
+	<?php for($i=0; $i<1; $i++){	$j=$i+1;	?>
+	 <div class="pageans ans" id='<?="pageans_".($i+1)?>'>			
+        <div class="subpageans" id='<?="subpageans_".($i+1)?>'>
+			<div class="top_div">
+					<div class="academy_name"></div>
+					<div class="paper_name"></div>									
+			</div>		
+			<div class="newspaperans" id='<?="newconans_".($i+1)?>'></div>	
+			
+			<div class="bottom_div">
+					<div class="academy_name"></div>
+					<div class="page_number"></div>
+			</div>		
+			  
+        </div>		
+    </div>	
+	<?php } ?>
+
+
+</div>
+
+
+
+
+	
+
+	<input type="submit" id="state_del_btn" value="undefined_num" style="display: none;">
+	<input type="submit" id="cur_class" value="0" style="display: none;">
+	<input type="submit" id="ans_class" value="0" style="display: none;">
+
 </body>
+
+
+<script>
+$(document).ready(function() { 
+
+	msieversion();  // 브라우저확인
+	
+	root_url=baseUrl = document.location.origin; 
+	document.getElementById('id01').style.display='block';
+				
+	result_E = new Array();	// 서버에서 오는 데이터저장.
+
+	
+	//////////  이전페이지에서 받는변수 /////////////////////////
+	var user_mid	='<?= $user_mid; ?>';		// 홍길동
+	var user_level	='<?= $user_level; ?>';		// 10
+//	var db_name		='<?= $db_name; ?>';		// 10
+	var kind		='<?=$kind?>';				// school/nation
+	var publisher	='<?=$publisher?>';			// 능률양현권
+	var lesson		='<?=$lesson?>';			// 1
+	var grade		='<?=$grade?>';				// 고1, 고2, 고3
+	var grade2		='<?=$grade2?>';			// 고1, 영어1, 영어2, 고3
+	var code		='<?=$code?>';				// 이전페이지에서 전달받는다.
+	var jemok		='<?=$jemok?>';				// 고1 능률양현권 1과
+				
+	if( kind =='school'){ var db_name='exam_school_h1';}
+	else if( kind =='nation'){ var db_name='exam_nation_h1';}
+
+	
+
+//		if(kind=='school'){ $("input.group2").attr('disabled','disabled'); }
+//		if(kind=='nation'){ $("input.group1").attr('disabled','disabled'); }
+
+		find_count(db_name, grade, grade2, kind, publisher, lesson );		// modal_1.php
+
+
+		$('#b_group').draggable();	
+	
+
+		$('#newcon_1').filter(':first-child').css('background-color','red');
+		
+		/* ================================================
+			             첫 답안지페이지에 추가하기
+		=================================================== */
+		$('#newconans_1').prepend( '<h3 style="margin-top:5px;margin-left:30px;margin-top:20px;margin-bottom:20px;"> ====== 정답지 ====== </h3>' );		// 정답
+
+
+});
+
+
+/*
+
+function square(x, callback) { setTimeout(callback, x*50, x); console.log('x:'+x);					} 
+var firstCallback= function (number) { square(1, thirdCallback); make_pb(); }		// 5초지연
+//var secondCallback = function (number) { square(4, thirdCallback); console.log('number:'+number);	block_start(); }	// 2초지연
+var thirdCallback = function (number) { block_stop();}
+
+
+function block_start(){
+	
+	$.blockUI({ message: '<h3><img src="/pages/menu/nation_test/images/spinner_2.gif" /> Just a moment...</h3>',
+				css: { top: '40%', left: '', right: '30%' } 	
+				 });			
+	}
+function block_stop(){
+    $.unblockUI();
+}
+
+
+*/
+
+document.oncontextmenu=function(){return false;} // 우클릭 방지
+			//	document.onselectstart=function(){return false;} // 드래그 방지
+			//	document.ondragstart=function(){return false;} // 선택 방지
+			//	document.onmousedown=function(){return false;}
+
+	
+
+$(document).on('keydown','.contents',function(key){
+//$('#floating').keydown(function (key) {
+   //alert('ddd');
+ if(key.keyCode == 17){//키가 13이면 실행 (엔터는 13, 17=control)
+            
+		key.preventDefault(); // stops its action	
+		alert("control키는 사용금지!!");
+        }
+ 
+  });
+
+
+/*
+$(document).on('click', '#go_print', function() {		// 출제하기...		
+			
+		block_start();
+		$('#id01').hide();
+				
+		square(2, firstCallback);
+
+
+});
+
+*/
+
+
+/*
+function find_select_btn(){
+		
+		var btn_num=$('#sub_2 > button.e100-btn').length; 		
+		
+		var num_array=new Array();
+				$.each( $('#sub_2 > button.e100-btn'), function(index,item){
+					var this_id	= $(this).attr('id');			// 1강_B1
+					var this_id_arr = this_id.split('_');							
+						num_array.push( this_id_arr[1] );								
+					});
+							
+					
+		if( num_array.length < 1){			// 아무것도 선택하지 않았다면... 모두다 선택으로 한다.
+					var arr_temp = new Array();
+				$.each( sub_data, function(index,item){
+						arr_temp.push( item.sub );
+							});
+				num_str = arr_temp.join(','); 
+						
+			}else{ num_str = num_array.join(','); }		
+
+			
+	}
+*/
+function find_select_btn(){
+		
+		var btn_num=$('.fieldsetB > button.e100-btn').length; 		
+		
+			num_array=[];
+			$.each( $('.fieldsetB > button.e100-btn'), function(index,item){
+				var this_id	= $(this).attr('id');			// 1강_B1
+				var this_id_arr = this_id.split('_');
+				num_array.push({lesson:this_id_arr[0], sub:this_id_arr[1]});  // num_array.push({lesson:'1강', sub:'B1'});							
+			});
+							
+					
+			if( num_array.length < 1){			// 아무것도 선택하지 않았다면... 모두다 선택으로 한다.
+					
+				$.each( sub_data, function(index,items){
+						num_array.push({lesson:items.lesson, sub:items.sub});  // num_array.push({lesson:'1강', sub:'B1'});
+							});	
+			}
+
+				
+	}
+
+
+function make_pb(){
+	
+		
+		
+		find_select_btn();		// num_str 값을 알아낸낸다. 선택한 지문..		
+
+		
+	//	var chk_array = num_str.split(',');	// num_str은 전역변수로 저장했음.  B18, B19, B20, B21, B22...	
+//		choice_result =  $.grep(sub_result, function(element) { return chk_array.indexOf(element.sub) > -1;  });  // 버튼 선택한것만 추려냄.
+
+		choice_result= sub_result.filter(function(r) {
+			return num_array.some(function(t) {
+				return r.lesson === t.lesson && r.sub === t.sub;
+			});
+		});
+		
+	//	console.log( 'choice_result:'+choice_result );
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		var kind = '<?=$kind?>';					// nation or school	
+		var writer = '<?=trim($user_mid)?>';		// 출제자
+										
+		var pn2 = Number( $('#pn2_div input:radio[name="pn2"]:checked').val() );	// 라디오번튼 값... 문제수	
+		///////////////////////////////////////////////////////////////////////////////////////////////		
+
+	
+		var pb_align = $("input:radio[name=pb_align]:checked").val();	// 본문순, or 랜덤				
+			if( kind == "nation" ){ pb_align = "bb_align"; }			// 모의고사는 무조건 순서대로..			
+					
+		multi_con2 = $.grep(choice_result , function(e) { return e.multi == 'multi' });	// 멀티만 모아둔다.							
+		multi_con = multi_con2.sort ( compare );	// 번호대로 정렬됨	
+		
+
+		sf_con2 = $.grep(choice_result , function(e) { return (e.multi == 'first' || e.multi == 'single') });	// multi 가 아닌것만 모아둔다..	
+		shuffle_data	= shuffle( sf_con2 );		// 번호순서가 혼합된다.	
+		
+		
+		//////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////
+		var context2 = new Array();
+	
+						
+			context2 = shuffle_data;		
+			var this_len=context2.length;	// 전체길이.
+	
+			
+		
+		context= new Array();
+		//	context = sf_con3.concat(multi_con);		// 합치기..											
+
+		/////////////// ==== 랜덤으로 정렬, or 본문순으로 정렬 ////////////////
+		
+		
+			var allsub_data =new Array();
+			var alllesson_data =new Array();
+				
+			for (var k in sub_data){
+				allsub_data.push(sub_data[k].sub);
+				alllesson_data.push( sub_data[k].lesson);
+				}
+				
+				var uni_sub = $.unique(allsub_data);	
+				var uni_lesson = $.unique(alllesson_data);		
+			//	console.log( uni_sub );
+			//	console.log( 'uni_sub_count:'+ uni_sub.length);
+			//	console.log( uni_lesson);
+			//	console.log('lesson count:'+sub_data[0].lesson_count);
+				
+		
+		if( pb_align == 'ran_align'){ 
+				context = shuffle_data; 
+		}else{			
+		
+		/////////////  본문순서대로 context에 저장한다. ////////////////	
+			for(var kk=0; kk < this_len ; kk++){		// 전체의 문제수만큼돌린다.
+							    
+			////////////////////////////////////////////										
+				for (var x in uni_lesson){		// B1,B2,B3,B4,K1,G1
+						for( var k in uni_sub){	// 1강, 2강, 3강, 4강
+							for (var p in context2){		// B1
+								if(uni_sub[k] == context2[p].sub && uni_lesson[x] == context2[p].lesson ){											
+									context.push(context2[p]);											
+									context2.splice(p,1); 													
+									break; }
+							}
+						}
+
+				}	
+			//////////////////////////////////////////////
+			}
+		
+		
+       
+		/////////////  본문순서대로 context에 저장한다. ////////////////	
+		/*	for(var kk=0; kk < this_len ; kk++){		// 전체의 문제수만큼돌린다.
+							    
+			////////////////////////////////////////////										
+				for (var k in uni_sub){		// B1,B2,B3,B4,K1,G1
+						for( var x in uni_lesson){
+							for (var p in context2){		// B1
+								if(uni_sub[k] == context2[p].sub && uni_lesson[x] == context2[p].lesson ){											
+									context.push(context2[p]);											
+									context2.splice(p,1); 													
+									break; }
+							}
+						}
+
+				}	
+			//////////////////////////////////////////////
+			}
+		*/	
+		}
+		
+		////////////////////////////////////////////////////////
+		
+
+		/* ================================================
+			              멀티문제 끼어넣기
+		=================================================== */
+		final_data = new Array();			
+		for( var kk=0; kk < context.length ; kk++){
+
+							
+			if( context[kk].multi == 'single'){
+				final_data.push( context[kk] );	
+
+			}else if(context[kk].multi == 'first'){
+
+				final_data.push( context[kk] );
+				var shuffle_idx = final_data.length-1;				
+				var link_num = context[kk].link;
+
+
+				for( var i=0; i < multi_con.length; i++){
+
+						if( multi_con[i].link == link_num){					
+						
+						final_data.push( multi_con[i] );
+						final_data[shuffle_idx].contents = multi_con[i].contents;
+							
+						}
+
+					}				
+			}			
+		}
+//		console.log( 'final_data');
+//		console.log( final_data );
+		/////////////////////////////////////////////////////////////////////////
+
+
+		in_class= $('.newspaper').eq(0);		// 현재의 div	
+		ans_class = $('.newspaperans').eq(0);		// 정답지 div	
+		
+		if (pn2 >= final_data.length){ pn2= final_data.length; } 
+			
+		for( i=0; i< pn2; i++){				
+			var kkk = ss_assign3(i, i+1);		// 번호를 리턴받음.
+		}
+
+
+					
+
+
+		/* ================================================
+			              빈 페이지제거
+		=================================================== */
+	
+		for ( jj=0 ; jj < 10 ; jj++){		
+		
+				if($('.newspaper:last').children().length < 1 ){
+					$('.page:last').remove();
+				}
+
+				if($('.newspaperans:last').children().length < 1 ){
+					$('.pageans:last').remove();
+				}
+		}		
+	
+			page_n = $('.page').length;	
+		$('.pageans > .subpageans > .bottom_div > .page_number').each(function(index) {
+			page_n++;
+			 $(this).text(page_n);
+		});
+
+		$('.academy_name').text( $('#name_pb').val() );
+	    $('.paper_name').text('<?= $jemok; ?>'); 
+		
+		
+
+
+		return kkk;
+		/////////////////////////////////////////////////////////////////
+		
+ //});
+}
+
+
+
+
+
+
+
+
+
+
+function overflow_check( this_id ){		
+	//	var bb ='test_'+b;
+
+		if (in_class.prop('scrollWidth') > in_class.width() ) {					
+				add_page();
+			//	console.log( "overflow:"+ this_id+ "_overflowed" );
+			var cur_ele_name = in_class.attr('id');				// newcon_1
+			var cur_ele_arr = cur_ele_name.split('_');
+			var cur_ele_num = Number( cur_ele_arr[1] );	// 1
+			var next_ele = $('.newspaper').eq( cur_ele_num );	// 다음의 div 만약 newcon_1이면 다음은 newcon_2
+				next_ele.prepend( $("#"+this_id));
+				in_class	=$('.newspaper').eq( cur_ele_num );		// 현재의 div		
+
+			
+			////////////////== 마지막이 타이틀인경우 다음 div로 이동시키기 ==////////////
+			var last_id = $('#'+cur_ele_name).children().last().attr('id')
+			var last_id_arr = last_id.split('_');
+			
+				if( last_id_arr[1] == 'title'){
+				//	console.log ( '타이틀입니다...' );
+					next_ele.prepend( $("#"+last_id));
+					}
+				
+			//	console.log( 'id_name:'+cur_ele_name );
+			//	console.log ( '마지막자식:'+ last_id );
+			//	console.log( 'last_id:'+ $("#"+this_id).attr('id'));
+			//////////////////////////////////////////////////////////////
+
+
+		}else{
+		//	console.log( "overflow:"+ this_id + "_Not overflowed");			
+		}
+}
+
+function ans_overflow_check( this_id ){		
+	//	var bb ='test_'+b;
+
+		if (ans_class.prop('scrollWidth') > ans_class.width()  ) {			
+				add_page_ans();
+			//	console.log( "overflow:"+ this_id+ "_overflowed" );
+			var cur_ele_name = ans_class.attr('id');	// 
+			var cur_ele_arr = cur_ele_name.split('_');
+			var cur_ele_num = Number( cur_ele_arr[1] );	// 1
+			var next_ele = $('.newspaperans').eq( cur_ele_num );	// 다음의 div
+				next_ele.prepend( $("#"+this_id));
+				ans_class	=$('.newspaperans').eq( cur_ele_num );		// 현재의 div				
+			
+		}else{
+			//console.log( "overflow:"+ this_id + "_Not overflowed");			
+		}
+}
+
+
+
+
+
+
+function ss_assign3(i, bunho){		
+		
+				var num=final_data[i].num;
+				var g_num='group_'+num;		
+				
+		//		if( bunho == 1 ) { var cur_k = 0;} else { var cur_k = $('#cur_class').val(); }
+		//		var in_class = ($('.half_page').eq(cur_k));
+
+				/////// title ///////////////////
+				var title=final_data[i].title;					/// 4. 다음을 아래와 같이 고치시오.
+			//	var num=final_data[i].num;
+			//	var i_num=i+1;
+				var num_id=num+"_num";
+				var this_id=num+"_title";
+				var pb_info_id=num+"_pb_info";	// pb_info의 아이디
+
+				////////////// title 옆에.. 고1능률양-B1 //////////////////////
+				var pb_info_arr= new Array();	
+					if(final_data[i].kind=="nation"){ pb_info_arr['kind']='모의';
+		//		var pb_info='['+(final_data[i].publisher).substr(2,3)+pb_info_arr['kind']+final_data[i].lesson+'월'+'-'+final_data[i].sub+']'; // 19모의-11월-11
+				var pb_info='[ N'+num+'-'+final_data[i].lesson+final_data[i].sub+']'; // B18
+						}
+					if(final_data[i].kind=="school"){ pb_info_arr['kind']='내신';
+		//		var pb_info='['+(final_data[i].publisher).substr(0,3)+final_data[i].lesson+'과'+'-'+final_data[i].sub+']'; // 능률양-8과-B1
+				var pb_info='[ S'+num+'-'+final_data[i].lesson+final_data[i].sub+']'; // B18
+						}	
+
+				//////////////////////////////////////////////////////////////			
+								
+				in_class.append($('<div/>', {
+						'id'			 : this_id,
+						'class'			 :'title '+g_num						
+					
+				}));
+
+
+				var num_span = $('<span class="num_span">'+bunho+'.'+'</span>');		// 번호
+				$('#'+this_id).prepend(num_span);
+				$(num_span).attr('id', num_id);
+				$('#'+num_id).attr('contenteditable','false');
+				
+				
+				$('#'+this_id).append(title);							// 내용 title
+				$('#'+this_id).find('.tcon').attr('id', num+'_tcon');
+		//		$('#'+num+'_tcon').html(title);
+				$('#'+num+'_tcon').attr('contenteditable','true');		
+		
+//if( final_data[i].multi == 'single' || final_data[i].multi == 'first' ){
+				if(final_data[i].contents){	// 본문내용이 있는경우에만..pb_info   천재이1과-B2
+				$('#'+this_id).append('<span id='+pb_info_id+' class="pb_info">'+pb_info+'</span>');
+				$('#'+pb_info_id).attr('contenteditable','false');				
+				}
+//}
+				if( final_data[i].gichul =='기출'){						// 기출
+					var gichul_id= num+'_gichul';
+					$('#'+this_id).append( '<span id='+gichul_id+' class="gichul" >'+'[기출]'+'</span>');
+					$('#'+gichul_id).attr('contenteditable','false');	
+				}
+			
+			//	_div_height( in_class );
+				overflow_check( this_id )
+			
+
+
+
+
+
+
+
+
+
+if( final_data[i].multi == 'single' || final_data[i].multi == 'first' ){
+	
+			//	var cur_k = $('#cur_class').val();
+			//	var in_class = ($('.half_page').eq(cur_k));
+
+	            /////////////////////////////////////////////////////////////////
+				///////// ==========contents ===========//////////////////////////
+				//////////////////////////////////////////////////////////////////
+				if(final_data[i].contents){
+						var this_class="contents "+g_num;
+						var this_id=num+"_contents";
+						var contents=final_data[i].contents;
+						var row = in_class;
+																	
+							 $('<div />', {
+									'html'			: contents,	
+									'id'			: this_id,
+									'class'			: this_class,
+									'contenteditable':'true'
+								}).appendTo(row);	
+				}	
+}
+				//	_div_height( in_class );
+				overflow_check( this_id )
+
+
+
+
+
+
+
+				///////// ==========problem-문제(오지선다형포함) ===========//////////////////////////
+				//////////////////////////////////////////////////////////////////
+		//		var cur_k = $('#cur_class').val();
+		//		var in_class = ($('.half_page').eq(cur_k));
+				/////////////// pb ////////////////
+				var this_id=num+"_pb";					
+				in_class.append($('<div/>', {
+								id		: this_id,
+								class	:'pb '+g_num,
+								text	: ""
+								}));	
+				$('#'+this_id).html(final_data[i].problem_tx);
+				
+				//	_div_height( in_class );
+				overflow_check( this_id )
+				
+
+
+
+
+
+
+
+
+				///////// ==========정답지 ===========//////////////////////////
+				//////////////////////////////////////////////////////////////////
+			//	var ans_k = $('#ans_class').val();
+			//	var ans_page = ($('.ans_half').eq(ans_k));
+
+				///////////////정답지에 표시////////////////////
+				var this_id=num+"_ans";					
+				ans_class.append($('<div/>', {
+								id		: this_id,
+								class	:'ans',
+								text	: ''
+								}));	
+
+				var table = $('<table></table>').addClass('answer_table');	
+										
+				
+				if(final_data[i].solution ==""){	
+					var row = $('<tr></tr>'); 
+					table.append(row);		
+					var row1 = $('<td contenteditable="false"></td>').addClass('ans1').text(bunho+')');
+					var row2 = $('<td contenteditable="false"></td>').addClass('ans2').text(final_data[i].answer);		
+					row.append(row1);
+					row.append(row2);
+
+				}else{
+					var row = $('<tr></tr>'); 
+					table.append(row);		
+					var row1 = $('<td contenteditable="false"></td>').addClass('ans1').text(bunho+')');
+					var row2 = $('<td contenteditable="false"></td>').addClass('ans2').text(final_data[i].answer);
+					row.append(row1);
+					row.append(row2);
+
+					var row = $('<tr></tr>');				
+					table.append(row);		
+					var row1 = $('<td contenteditable="false"></td>').addClass('ans1').text("");
+					var row2 = $('<td contenteditable="false"></td>').addClass('ans2 ans22').text(final_data[i].solution );
+					row.append(row1);
+					row.append(row2);
+				}
+				
+                $('#'+this_id).append(table);
+
+				ans_overflow_check( this_id )
+
+		//		_ans_div_height( this_id );			// 정답지 높이조절하기
+
+
+
+
+
+
+
+		/*		
+				/////////////////////===== 해설 =====//////////////
+				var this_id=num+"_sol";					
+				($('.ans_half').eq(1)).append($('<div/>', {
+								id		: this_id,
+								class	:'sol',
+								text	: ''
+								}));	
+
+				var table = $('<table></table>').addClass('solution_table');	
+				var row = $('<tr></tr>'); 
+				table.append(row);							
+				var row1 = $('<td contenteditable="false"></td>').addClass('sol1').text(bunho+')')
+				var row2 = $('<td contenteditable="false"></td>').addClass('sol2').text(final_data[i].solution);			
+				row.append(row1);
+				row.append(row2);	                                
+                $('#'+this_id).append(table);
+				//////////////////////////////////////////////////////////////////////////////////////////
+		*/
+
+
+
+		//		var cur_k = $('#cur_class').val();
+		//		var in_class = ($('.half_page').eq(cur_k));
+				/////////////// 시험지에 표시  //////////////////////////////////////////////////////////////////
+				var this_id=num+"_ans_sol";					
+				in_class.append($('<div/>', {
+								id		: this_id,
+								class	:'ans_sol',								
+								text	: ' '
+								}));
+			
+
+				$('#'+this_id).append($('<div/>', {
+								id		: num+'_ans_div',
+								class	:'ans_div',								
+								text	: '[정답] '+final_data[i].answer
+								}));
+				$('#'+this_id).append($('<div/>', {
+								id		: num+'_sol_div',
+								class	:'sol_div',								
+								text	: '[해설] '+final_data[i].solution
+								}));
+
+				//	_div_height( in_class );
+				overflow_check( this_id )
+				
+				
+
+				return bunho;
+
+
+	}
+
+
+
+
+
+
+
+function add_page(){		
+		
+		var last_page_name	= $(".page:last").attr('id');	// page_1
+		var last_page_arr	= last_page_name.split('_');	
+		var last_page_num	= last_page_arr[1];				// 1
+		var new_id_n		= Number(last_page_num)+1;		// 2
+		var next_id_name	= 'page_'+new_id_n;				// page_2
+
+		var html = '<div class="page pbs" id='+"page_"+new_id_n+'>'+'</div>';	// page 삽입	
+			($('#'+last_page_name)).after(html);
+		var html = '<div class="subpage" id='+"subpage_"+new_id_n+'>'+'</div>';		// subpage 삽입
+			($('#'+next_id_name)).append(html);
+
+		var html = '<div class="top_div"><div class="academy_name">에이스학원</div><div class="paper_name">고1-천재이재영-2과</div>	</div>';		
+			$('#subpage_'+new_id_n).append(html);	
+		var html = '<div class="newspaper" id='+"newcon_"+new_id_n+'>'+'</div>';	// newspaper삽입	
+			$('#subpage_'+new_id_n).append(html);
+		var html = '<div class="bottom_div"><div class="academy_name">에이스학원</div><div class="page_number">'+new_id_n+'</div></div>';		
+			$('#subpage_'+new_id_n).append(html);	
+	}
+
+function add_page_ans(){		
+		
+		var last_page_name	= $(".pageans:last").attr('id');	// pageans_1
+		var last_page_arr	= last_page_name.split('_');	
+		var last_page_num	= last_page_arr[1];				// 1
+		var new_id_n		= Number(last_page_num)+1;		// 2
+		var next_id_name	= 'pageans_'+new_id_n;				// page_2
+
+		var html = '<div class="pageans ans" id='+"pageans_"+new_id_n+'>'+'</div>';	// page 삽입	
+			($('#'+last_page_name)).after(html);
+		var html = '<div class="subpageans" id='+"subpageans_"+new_id_n+'>'+'</div>';		// subpage 삽입
+			($('#'+next_id_name)).append(html);
+
+		var html = '<div class="top_div"><div class="academy_name">에이스학원</div><div class="paper_name">고1-천재이재영-2과</div>	</div>';		
+			$('#subpageans_'+new_id_n).append(html);	
+		var html = '<div class="newspaperans" id='+"newconans_"+new_id_n+'>'+'</div>';	// newspaper삽입	
+			$('#subpageans_'+new_id_n).append(html);
+		var html = '<div class="bottom_div"><div class="academy_name">에이스학원</div><div class="page_number">'+new_id_n+'</div></div>';		
+			$('#subpageans_'+new_id_n).append(html);	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+		var sub_data;		// B1:20, B2:12, B3:30... 18:4, 19:30		
+		var	sub_result;
+		var num_str;		// B18, B19, B20... 선택한걸 담아놓는다..
+			
+/*
+function find_count(db_name,grade,grade2,kind,publisher,lesson ){	// B1,B2,B3...몇개인지... 				
+		
+			var url_name=root_url+'/pages/menu/nation_test/server.php';				
+			
+				$.ajax({
+					type	: "POST",
+					dataType: 'json',
+					global	: false,
+					url		:url_name,
+														
+					data: {		
+							mode:		"find_count_test",
+							db_name		:	db_name,
+							kind		:	kind,
+							lesson		:	lesson,
+							publisher	:	publisher,
+							grade2		:	grade2,
+							grade		:	grade						
+								   },	    
+									   
+					success:function(result){														
+					
+						sub_data=	result.sub_all;
+						sub_result = result.sub_result;
+
+				//		console.log(sub_data);
+				//		console.log(sub_result);
+				
+				//		sub_data = $.grep(sub_data2 , function(e) { return (e.sub).charAt(0) != 'K' });	// multi 가 아닌것만 모아둔다..
+					if( sub_data.s_result1 != 'No_data'){
+						$.each(sub_data,function(index,items){
+						
+						var this_id='sbtn_'+sub_data[index].sub;
+						var sub_txt=sub_data[index].sub;		// B1, B2, B3, B4, D1, K1, G1...
+						if(sub_txt.charAt(0)=='B'){ btn_type='btn btn-primary bb_type btn-sm e100-btn'; 
+													$("input:checkbox[id='b_check']").prop("checked", true); }			// 본문
+						else if(sub_txt.charAt(0)=='G'){ btn_type='btn btn-success gg_type  btn-sm e100-btn'; 
+														 $("input:checkbox[id='g_check']").prop("checked", true);}		// 문법과 독립서술형
+						else if(sub_txt.charAt(0)=='D'){ btn_type='btn btn-Danger dd_type  btn-sm e100-btn';
+														$("input:checkbox[id='d_check']").prop("checked", true);}		// 대화문
+						else if(sub_txt.charAt(0)=='K'){ btn_type='btn btn-info kk_type  btn-sm e100-btn';
+														$("input:checkbox[id='k_check']").prop("checked", true);}			// 지문외
+						else{ btn_type='btn btn-warning mm_type btn-sm e100-btn';}	
+					//	var btn_type='btn btn-primary';
+						 
+						 if(sub_data[index].sub != ''){		// sub가 없는것은 넣지않는다.
+
+								 btn  = $('<button />', {'class':btn_type, 
+								 		id: this_id,
+										 text: sub_data[index].sub,
+										 name: '',
+										 style: 'margin-right:8px;margin-bottom:10px;',
+										 type: 'submit',
+										'data-jqui-type':''
+									   }),
+								
+									  i  = $('<span />', {'class':'badge badge-light',
+															'style':'margin-left:10px',
+															'text':sub_data[index].counts
+														  });			
+								$('#sub_1').append(btn.append(i));
+
+						}
+						});	// each구문
+						
+						}
+								
+					}, 
+			
+					 beforeSend: function(){	
+					
+						 $.blockUI({ css: { backgroundColor: '#fff', color: '#1DDB16'} });
+						  $.blockUI({ message: '<h3><img src="../images/viewLoading11.gif" /> Just a moment...</h3>',
+						  css: { top: '40%', left: '', right: '30%' } 	
+						   });														
+					},
+			
+					complete: function(){
+									
+					//	reposition();
+						setTimeout($.unblockUI, 300); 
+						
+					}, 
+								
+					error: function() {
+						Swal.fire( 'Ajax?', 'find_count 에서 문제가 발생하였습니다!!', 'error' );		
+					//	alert("문제가 발생하였습니다");		
+					}
+				
+				});	// $.ajax({	
+				
+}
+
+
+
+
+$(document).on('click', '.school_container > .e100-btn', function() {		// 번호버튼을 클릭해서 선택해제..
+
+			var parent_id = $(this).parent().attr('id');
+			if( parent_id == 'sub_1'){	
+				var btn_clone = $(this).clone();
+				$('#sub_2').append( btn_clone );
+				$(this).attr('disabled',true);			
+				$(this).addClass('btn-info').removeClass('btn-primary');;
+
+
+
+				btn_sort('sub_2');		// sub_2에 있는 버튼들을 정렬한다.
+				
+			}else if( parent_id == 'sub_2'){
+				var sub2_id= $(this).attr('id');
+				$(this).remove();
+				$('#'+sub2_id).attr('disabled',false);
+				$('#'+sub2_id).addClass('btn-primary').removeClass('btn-info');
+
+			//	var btn_clone = $(this).clone();
+			//	$('#sub_1').append( btn_clone );
+			//	$(this).remove();
+				
+			//	btn_sort('sub_1');		// sub_1에 있는 버튼들을 정렬한다.
+			}
+			
+});
+
+function btn_sort(a){	// 버튼 id값으로 정렬하기..
+		$("#"+a+" button").sort(function(a, b) {
+				  var a_id	= a.id;
+				  var b_id	= b.id;			
+				  
+				//  var a_num = (a_id).replace(/[^0-9]/g,"");	// 번호만 추출
+				//  var b_num = (b_id).replace(/[^0-9]/g,"");		// 번호만 추출
+				//  return a_num - b_num;
+					
+					return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+				  
+				}).each(function() {
+				  var elem = $(this);
+				  elem.remove();
+				  $(elem).appendTo("#"+a);
+				});
+
+	}
+
+
+$(document).on('click', '.nation_container > .e100-btn', function() {		// 번호버튼을 클릭해서 선택해제..
+			
+			var parent_id = $(this).parent().attr('id');
+			if( parent_id == 'sub_1'){	
+				var btn_clone = $(this).clone();
+				$(this).attr('disabled',true);			
+				$(this).addClass('btn-info').removeClass('btn-primary');;
+
+				$('#sub_2').append( btn_clone );
+
+				
+				btn_sort('sub_2');		// sub_2에 있는 버튼들을 정렬한다.
+				
+			}else if(parent_id == 'sub_2' ){
+				var sub2_id= $(this).attr('id');
+					$(this).remove();
+					$('#'+sub2_id).attr('disabled',false);
+					$('#'+sub2_id).addClass('btn-primary').removeClass('btn-info');
+			}			
+		
+});
+
+*/
+
+////////==========  비교해서 정렬한다 ============
+function compare ( a , b ) {   return a - b;   }	
+
+
+
+////=====  json정렬 ASC
+function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
+
+
+////=====  소수점체크  
+function floatCheck(obj){
+				 var num_check=/^([0-9]*)[\.]?([0-9])?$/;
+					if(!num_check.test(obj)){
+					return "NF";
+				}
+				return "F";
+}
+
+
+
+
+function shuffle(array) {
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+
+
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+	
+}
+
+
+ /* =================================================================
+  앞/뒤 공백 제거
+ ================================================================= */
+
+ String.prototype.trim = function() {
+//   return this.replace(/\s/g, "");		// 빈칸은 전체다 삭제하는것.
+   return this.replace(/(^\s*)|(\s*$)/, '');
+ }
+
+ 
+
+ /* =================================================================
+  앞 공백 제거
+ ================================================================= */
+
+ String.prototype.ltrim = function() {
+
+  var i, j = 0;
+  var objstr
+
+  for (i = 0; i < this.length; i++) {
+
+   if (this.charAt(i) == ' ') j = j + 1;
+   else break;
+  }
+
+  return this.substr(j, this.length - j + 1) 
+ }
+
+ /* =================================================================
+  뒤 공백 제거
+ ================================================================= */
+
+ String.prototype.rtrim = function() {
+
+  var i, j = 0;
+
+  for (i = this.length - 1; i >= 0; i--) {
+
+   if (this.charAt(i) == ' ') j = j + 1;
+   else break;
+  }
+
+  return this.substr(0, this.length - j);
+ }
+
+
+/////////  브라우저 확인  //////////////
+function msieversion() {
+	var agent = navigator.userAgent.toLowerCase();
+	if (agent.indexOf("chrome") != -1) {		
+		console.log("크롬 브라우저입니다.");
+		var cdk = 'chrome';		
+	}else{
+		$('.chrome_o').hide();
+		$('.chrome_x').show();
+		alert('크롬브라우저가 아닙니다. 문제가 짤리거나 서비스에 제한이 있을수있습니다.!');
+	
+		console.log("크롬 이외의 브라우저입니다.");
+		var cdk = 'no_chrome';
+	}
+	return cdk;
+}
+///////////////////////////////////
+
+
+</script>
+
+
+
 
 </html>
