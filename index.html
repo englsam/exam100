@@ -1341,17 +1341,13 @@ function shuffleArray(array) {
  ================================================================= */
 
  String.prototype.ltrim = function() {
-
-  var i, j = 0;
-  var objstr
-
-  for (i = 0; i < this.length; i++) {
-
-   if (this.charAt(i) == ' ') j = j + 1;
-   else break;
-  }
-
-  return this.substr(j, this.length - j + 1) 
+            var i, j = 0;
+            var objstr
+            for (i = 0; i < this.length; i++) {
+                    if (this.charAt(i) == ' ') j = j + 1;
+                    else break;
+            }
+            return this.substr(j, this.length - j + 1) 
  }
 
  /* =================================================================
@@ -1359,34 +1355,30 @@ function shuffleArray(array) {
  ================================================================= */
 
  String.prototype.rtrim = function() {
-
-  var i, j = 0;
-
-  for (i = this.length - 1; i >= 0; i--) {
-
-   if (this.charAt(i) == ' ') j = j + 1;
-   else break;
-  }
-
-  return this.substr(0, this.length - j);
+            var i, j = 0;
+            for (i = this.length - 1; i >= 0; i--) {
+                    if (this.charAt(i) == ' ') j = j + 1;
+                    else break;
+            }
+            return this.substr(0, this.length - j);
  }
 
 
 /////////  브라우저 확인  //////////////
 function msieversion() {
-	var agent = navigator.userAgent.toLowerCase();
-	if (agent.indexOf("chrome") != -1) {		
-		console.log("크롬 브라우저입니다.");
-		var cdk = 'chrome';		
-	}else{
-		$('.chrome_o').hide();
-		$('.chrome_x').show();
-		alert('크롬브라우저가 아닙니다. 문제가 짤리거나 서비스에 제한이 있을수있습니다.!');
-	
-		console.log("크롬 이외의 브라우저입니다.");
-		var cdk = 'no_chrome';
-	}
-	return cdk;
+            var agent = navigator.userAgent.toLowerCase();
+            if (agent.indexOf("chrome") != -1) {		
+                console.log("크롬 브라우저입니다.");
+                var cdk = 'chrome';		
+            }else{
+                $('.chrome_o').hide();
+                $('.chrome_x').show();
+                alert('크롬브라우저가 아닙니다. 문제가 짤리거나 서비스에 제한이 있을수있습니다.!');
+            
+                console.log("크롬 이외의 브라우저입니다.");
+                var cdk = 'no_chrome';
+            }
+            return cdk;
 }
 ///////////////////////////////////
 
