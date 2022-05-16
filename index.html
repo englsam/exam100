@@ -60,7 +60,18 @@
 			margin-right:20px;
 			
 		}
-</style>
+	</style>
+
+	<style>
+		table#incontent_table{border:#8c8c8c 1px solid; width:100%; margin-bottom:10px; margin-top:5px; }
+		table#incontent_table td{ padding:3px; }	
+		.bottom_class{ 	border:#8c8c8c 1px solid;
+					    padding: 5px;
+						background-color: lightsteelblue;				
+		}		
+		
+	</style>
+
 
 <!-- ============  control page div ================== -->
 
@@ -79,37 +90,75 @@
 <!-- =================================================  -->
 
 <script>
-
-//////////////// =====  정답... 풀이 버튼 ====== ////////////////////////////////
 $(document).on('click', '#add_one', function() {		// 정답을 클릭하면
 
+	var class_len =  $('.contentA').length;
+	var this_id ='contentA_'+class_len;
+
 	var row = $('.newspaper').eq(0);
-    var contents = "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";
-        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";
-        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
-        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
-        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
-        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
-        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
-        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
-        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
-           
+    var contents = '<div id="15394_contents" class="contents group_15394 red" contenteditable="true"><table class="incontent_table" id="incontent_table">';
+		contents += '<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr></tbody></table>';
+		contents += 'One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>';		
+		contents += '&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>';
+		contents += '&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;</div>"';
+		contents += '<div id="kkk1" class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed';
+		contents += 'Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.	 </div> ';
+
     $('<div />', {
             'html'			    : contents,	           
             'class'			    : 'contentA',
+			'id'				: this_id,
             'contenteditable'   :'true'
-    }).appendTo(row);
+    }).appendTo(row);	
+	
+	console.log( '=====' + this_id +'=========');
+	const el = document.querySelector('#'+this_id);  	
+	const el2 = document.querySelector('.newspaper');  	
+	const divHeight = el.offsetHeight;
+	const divTop = el.offsetTop;
+	console.log('높이:'+divHeight);
+	console.log('Top:'+divTop)
+	console.log('newspaper높이:'+el2.offsetHeight)
 
+	if(overflow_check(row)=='overflowed'){
+		alert('높이:'+divHeight);
+		console.log( '자식요소개수:'+$('#contentA_0').children.length );		
+		}
+	//console.log( document.querySelector("#newcon_1").clientHeight );
+	//console.log( document.querySelector("#newcon_1").scrollHeight );
+	/*
+	var element = document.getElementById('newcon_1');
+	var h = element.clientHeight;
+	var w = element.scrollHeight;
+
+		console.log( h +"/"+ w);
+	*/
+		/*	
+	for(var j=0; j< $(".contentA").length; j++){
+		var divEl = $('.contentA').eq(j);
+    	var divY = divEl.offset().top;
+		console.log( divY );
+	 }
+	 */
 });
 
-
 //////////  print //////////////////////////////////
-$("#print_all").click(function(){	// 정답만 prin
+$("#print_all").click(function(){	// print
 	window.print();
 });
 
 
+function overflow_check( in_class ){		
+	
+		if (in_class.prop('scrollWidth') > in_class.width() ) {						
+				return 'overflowed';
+		}else{
+				return '';
+		}			
+	}
 </script>
+
+
 
 
 <div class="book" id="book1">
@@ -136,6 +185,7 @@ $("#print_all").click(function(){	// 정답만 prin
     .contentA{ 
         border: 1px blue solid;
         margin-bottom: 15px;
+		padding: 5px;
         text-align:justify;
     }
 
@@ -166,14 +216,20 @@ function add_page(){
 		var html = '<div class="subpage" id='+"subpage_"+new_id_n+'>'+'</div>';		// subpage 삽입
 			($('#'+next_id_name)).append(html);
 
-		var html = '<div class="top_div"><div class="academy_name">테스트학원</div><div class="paper_name">테스트-1과</div>	</div>';		
+		var html = '<div class="top_div"><div class="academy_name">테스트</div><div class="paper_name">Lesson1</div>	</div>';		
 			$('#subpage_'+new_id_n).append(html);	
 		var html = '<div class="newspaper" id='+"newcon_"+new_id_n+'>'+'</div>';	// newspaper삽입	
 			$('#subpage_'+new_id_n).append(html);
-		var html = '<div class="bottom_div"><div class="academy_name">테스트학원</div><div class="page_number">'+new_id_n+'</div></div>';		
+		var html = '<div class="bottom_div"><div class="academy_name">테스트</div><div class="page_number">'+new_id_n+'</div></div>';		
 			$('#subpage_'+new_id_n).append(html);	
 	}
 
+function getAbsoluteTop(element) {
+		let element2 = document.querySelector('#'+element);
+		let elementTop2 = window.pageYOffset + element2.getBoundingClientRect().top;
+			return elementTop2;
+			console.log(elementTop2); 
+}
 </script>
 
 </html>
