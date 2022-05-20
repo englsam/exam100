@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Using Columnizer for Page Layout</title>
+
+<link rel="stylesheet" href="reset.css" type="text/css" media="screen" charset="utf-8" />
+<style type="text/css">
+.page{ width: 21cm; height: 29.7cm; border: 1px solid black; margin: 0 auto; position: relative; padding:10px 30px 10px 30px; margin-bottom:10px; }
+.page .content .column{ text-align:justify; font-size: 18px; }
+.page .content .column blockquote{ border-left: 2px solid #999999; background: #DEDEDE; padding: 10px; margin: 4px 20px; clear: both; }
+.page .content .column img{ float: left; margin: 10px; }
+.page .content .column p{ padding: 0 10px; margin: 10px 0; }
+.page .content .column h1{ padding: 0 10px; }
+.page .content .column div{ padding: 0 10px; margin:10px;}
+
+.page .header{ text-align: center; font-size: 12pt; font-family: helvetica, arial; padding: 10px 0 0; }
+.page .header hr, .page .footer hr{ width: 100%; }
+.page .footer{ text-align: center; }
+.page .footer span{ position: absolute; bottom: 10px; right: 10px; }
+.page_template{ display: none; }
+
+.enclosure {border:1px dashed black}	  
+</style>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="../src/jquery.columnizer.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function(){
+			var content_height = 1000;	// the height of the content, discluding the header/footer
+			var page = 1;				// the beginning page number to show in the footer
+			function buildNewsletter(){
+				if($('#newsletterContent').contents().length > 0){
+					// when we need to add a new page, use a jq object for a template
+					// or use a long HTML string, whatever your preference
+					$page = $(".page_template:first").clone().addClass("page").css("display", "block");
+					
+					// fun stuff, like adding page numbers to the footer
+					$page.find(".footer span").append(page);
+					$("body").append($page);
+					page++;
+					
+					// here is the columnizer magic
+					
+					$('#newsletterContent').columnize({
+						columns: 2,
+						target: ".page:last .content",
+						overflow: {							
+							height: content_height,
+							id: "#newsletterContent",
+							doneFunc: function(){
+								console.log("done with page");
+								buildNewsletter();								
+							}
+						}
+					});
+				
+				}
+			}
+			setTimeout(buildNewsletter, 1);
+		});
+	</script>
+
+<body>
+
+<div class="page_template">  
+	<div class='header'>This is a header<hr></div>  
+	<div class='content'></div>  
+	<div class='footer'><hr><span>Page: </span>This is the footer.</div>  
+</div> 
+<div id="newsletterContent">
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 <span style="text-decoration: underline;">확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) </span>보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+		
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+		
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+		
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+
+		<div class="contents group_15394 red" contenteditable="true">
+		<table class="incontent_table" id="incontent_table">
+		<tbody><tr><td class="incontent_td" id="td0_1" contenteditable="true">북한에서 신종 코로나바이러스 감염증(코로나19)의 확산이 본격화되는 가운데 열악한 의료시스템, 물자 부족 등으로 북한이 참담한 상황에 직면할 수 있다고 BBC가 15일(현지시간) 보도했다.이날 북한은 지난 13일 저녁부터 14일 오후 6시까지 전국에서 29만6180명의 신규 발열자가 발생했다고 밝혔다. </td></tr>
+		</tbody></table>
+
+		One day while driving my car, ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd ddd I kept noticing things that were wrong with all the other cars on the road.&nbsp; <span class="tcolor">(①)</span>;		
+		&nbsp; But we can develop awareness and use anything that happens to us and others as great learning experiences.&nbsp; <span class="tcolor">(⑤)</span>;
+		&nbsp; Instead of projecting negative traits onto others, look first inside to see if you have a trace of what you find so awful in others.&nbsp; &nbsp;
+		</div>
+
+		<div class="bottom_class">In this tutorial, we look at justify-content: space-between in CSS Flexbox.The justify-content property in CSS Flexbox determines how space is distributed; Extend the new LHR unlock functionality to ETH+ALPH dual mining, and ERGO single mode. LHR tune values are accurate, but once you found a value that is stable for your GPU, you can set it manually with --lhr-tune and get consistent results across miner restarts.</div>
+		
+
+</div>
+</body>
+
+<style>
+		table#incontent_table{border:#8c8c8c 1px solid; width:100%; margin-bottom:10px; margin-top:5px; }
+		table#incontent_table td{ padding:5px; }	
+		.contents{		background-color: white; 
+						margin-bottom:20px;
+						line-height:150%;
+						border: 1px solid #eee;
+					}
+						
+		.bottom_class{ 	background-color: lightsteelblue; 
+						margin-bottom:20px;
+						line-height: 150%;
+					}		
+		
+	</style>
+</html>

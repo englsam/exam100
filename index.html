@@ -114,14 +114,17 @@ $(document).on('click', '#add_one', function() {		// 정답을 클릭하면
 	console.log( '=====' + this_id +'=========');
 	const el = document.querySelector('#'+this_id);  	
 	const el2 = document.querySelector('.newspaper');  	
+	const el3 = document.querySelector('.bottom_div');  	
+
 	const divHeight = el.offsetHeight;
 	const divTop = el.offsetTop;
 	console.log('높이:'+divHeight);
 	console.log('Top:'+divTop)
 	console.log('newspaper높이:'+el2.offsetHeight)
+	console.log('bottom_div y좌표:'+el3.offsetTop)
 
 	if(overflow_check(row)=='overflowed'){
-		alert('높이:'+divHeight);
+		console.log('높이:'+divHeight);
 		console.log( '자식요소개수:'+$('#contentA_0').children.length );		
 		}
 	//console.log( document.querySelector("#newcon_1").clientHeight );
@@ -151,9 +154,12 @@ $("#print_all").click(function(){	// print
 function overflow_check( in_class ){		
 	
 		if (in_class.prop('scrollWidth') > in_class.width() ) {						
-				return 'overflowed';
+		//	$('#contentA_3').clone().appendTo( $('#newcon_2')) ;	
+			add_page();
+			return 'overflowed';
+				
 		}else{
-				return '';
+			return '';
 		}			
 	}
 </script>
@@ -163,13 +169,13 @@ function overflow_check( in_class ){
 
 <div class="book" id="book1">
 
-	<div class="page pbs" id='page_0'>			
-        <div class="subpage" id='subpage_0'>
+	<div class="page pbs" id='page_1'>			
+        <div class="subpage" id='subpage_1'>
 			<div class="top_div">
 					<div class="academy_name"></div>
 					<div class="paper_name"></div>									
 			</div>		
-			<div class="newspaper" id='newcon_0'></div>	
+			<div class="newspaper" id='newcon_1'></div>	
 			
 			<div class="bottom_div">
 					<div class="academy_name"></div>
@@ -196,10 +202,11 @@ function overflow_check( in_class ){
 
 <script>
 $(document).ready(function() { 	
-	for(var i=0; i<10; i++){
-		add_page();
-	}
-	$('#page_0').remove();
+
+//	for(var i=0; i<10; i++){
+//		add_page();
+//	}
+//	$('#page_0').remove();
 });
 
 
@@ -224,12 +231,7 @@ function add_page(){
 			$('#subpage_'+new_id_n).append(html);	
 	}
 
-function getAbsoluteTop(element) {
-		let element2 = document.querySelector('#'+element);
-		let elementTop2 = window.pageYOffset + element2.getBoundingClientRect().top;
-			return elementTop2;
-			console.log(elementTop2); 
-}
+
 </script>
 
 </html>
